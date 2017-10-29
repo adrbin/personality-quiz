@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Question.css';
 
-const BackButton = ({ num, url }) => {
-  return num > 1 ? (
+const BackButton = ({ num, url }) =>
+  num > 1 ? (
     <Link to={`${url}/${num - 1}`} className="nav back">
       &lt;
     </Link>
   ) : (
     <p className="nav back" />
   );
-};
 
-const NextButton = ({ num, url, length }) => {
-  return num < length ? (
+const NextButton = ({ num, url, length }) =>
+  num < length ? (
     <Link to={`${url}/${num + 1}`} className="nav back">
       &gt;
     </Link>
@@ -22,7 +21,23 @@ const NextButton = ({ num, url, length }) => {
       ?
     </Link>
   );
-};
+
+const Answer = ({ question, answer, id, onAnswerChange }) => (
+  <div className="answer">
+    <div className="options option1">{question[0]}</div>
+    <input
+      type="range"
+      name="slider"
+      orient="vertical"
+      min="1"
+      max="5"
+      step="1"
+      value={answer}
+      onChange={e => onAnswerChange(id, parseInt(e.target.value, 10))}
+    />
+    <div className="options option2">{question[1]}</div>
+  </div>
+);
 
 class Question extends Component {
   constructor() {
@@ -35,25 +50,12 @@ class Question extends Component {
     return (
       <div className="content">
         <BackButton num={this.props.num} url={this.props.url} />
-        <div className="answer">
-          <div className="options option1">
-            {this.props.questions[this.id][0]}
-          </div>
-          <input
-            type="range"
-            name="slider"
-            orient="vertical"
-            min="1"
-            max="5"
-            step="1"
-            value={this.props.answer}
-            onChange={e =>
-              this.props.onAnswerChange(this.id, parseInt(e.target.value, 10))}
-          />
-          <div className="options option2">
-            {this.props.questions[this.id][1]}
-          </div>
-        </div>
+        <Answer
+          question={this.props.questions[this.id]}
+          answer={this.props.answer}
+          id={this.id}
+          onAnswerChange={this.props.onAnswerChange}
+        />
         <NextButton
           num={this.props.num}
           url={this.props.url}
