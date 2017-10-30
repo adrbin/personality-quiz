@@ -22,7 +22,7 @@ class Quiz extends Component {
 
   render() {
     return (
-      <div style={{ flex: 20 }}>
+      <div className="content">
         <Route exact path={this.props.match.url} component={StartQuiz} />
         <Route
           path={this.props.match.url + '/:num'}

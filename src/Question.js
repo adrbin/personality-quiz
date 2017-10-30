@@ -48,7 +48,7 @@ class Question extends Component {
   }
   render() {
     return (
-      <div className="content">
+      <div className="question">
         <BackButton num={this.props.num} url={this.props.url} />
         <Answer
           question={this.props.questions[this.id]}
