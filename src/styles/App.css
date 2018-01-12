@@ -12,6 +12,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  padding: 0;
+  font-family: sans-serif;
   height: 100vh;
   width: 100vw;
 }
@@ -29,6 +31,11 @@ h1 {
   margin: 0;
 }
 
+h1 a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
 .quiz {
   display: flex;
   flex-direction: column;
@@ -37,6 +44,19 @@ h1 {
 
 #root {
   height: 100%;
+}
+
+.content {
+  flex: 20;
+  justify-content: center;
+  padding: 20px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.content h1 {
+  text-align: center;
 }
 
 /* .App {
